@@ -1,0 +1,46 @@
+apex_sunloc.o : apex_sunloc.f module_decomp.o 
+efield.o : efield.f module_decomp.o 
+get_efield90km.o : get_efield90km.f efield.o module_sunloc.o module_eldyn.o module_magfield.o module_decomp.o 
+module_ADJUST.o : module_ADJUST.f module_decomp.o 
+module_DerivPotential.o : module_DerivPotential.f efield.o module_decomp.o 
+module_EpotVal.o : module_EpotVal.f module_LEGENDRE.o module_decomp.o 
+module_FSVal.o : module_FSVal.f module_decomp.o 
+module_GECMP.o : module_GECMP.f module_EpotVal.o module_decomp.o 
+module_GET_TILT.o : module_GET_TILT.f module_JULDAY.o module_ADJUST.o module_decomp.o 
+module_GlobalElPotential.o : module_GlobalElPotential.f module_highlat_getbnd.o module_pot_latsmo.o module_pot_latsmo2.o module_EpotVal.o module_pot_lonsmo.o module_bnd_sinus.o module_highlat_adjust.o efield.o module_interp_poten.o module_efield_mid.o module_prep_weimer.o module_decomp.o 
+module_JULDAY.o : module_JULDAY.f module_decomp.o 
+module_LEGENDRE.o : module_LEGENDRE.f module_decomp.o 
+module_ReadCoef.o : module_ReadCoef.f module_decomp.o 
+module_SetModel.o : module_SetModel.f module_FSVal.o module_decomp.o 
+module_adj_S_a.o : module_adj_S_a.f efield.o module_decomp.o 
+module_bnd_sinus.o : module_bnd_sinus.f module_svbksb.o module_ff.o efield.o module_svdcmp.o module_decomp.o 
+module_cal_monthday.o : module_cal_monthday.f module_decomp.o 
+module_constants.o : module_constants.f efield.o module_decomp.o 
+module_efield_init.o : module_efield_init.f module_ReadCoef.o module_prep_pnm.o module_constants.o module_prep_fk.o module_index_quiet.o efield.o module_read_acoef.o module_decomp.o 
+module_efield_mid.o : module_efield_mid.f module_ff.o efield.o module_set_fkflfs.o module_pnm.o module_decomp.o 
+module_efield_sunloc.o : module_efield_sunloc.f module_decomp.o 
+module_eldyn.o : module_eldyn.f efield.o module_decomp.o 
+module_ff.o : module_ff.f efield.o module_decomp.o 
+module_fun_MLT.o : module_fun_MLT.f module_ADJUST.o module_decomp.o 
+module_fun_MagLong.o : module_fun_MagLong.f module_ADJUST.o module_decomp.o 
+module_get_efield.o : module_get_efield.f module_GlobalElPotential.o module_adj_S_a.o efield.o module_DerivPotential.o module_decomp.o 
+module_highlat_adjust.o : module_highlat_adjust.f efield.o module_decomp.o 
+module_highlat_getbnd.o : module_highlat_getbnd.f module_GECMP.o efield.o module_decomp.o 
+module_index_quiet.o : module_index_quiet.f efield.o module_decomp.o 
+module_init_eldyn.o : module_init_eldyn.f efield.o module_eldyn.o module_efield_init.o module_decomp.o 
+module_interp_poten.o : module_interp_poten.f efield.o module_decomp.o 
+module_magfield.o : module_magfield.f module_decomp.o 
+module_pnm.o : module_pnm.f efield.o module_decomp.o 
+module_pot_latsmo.o : module_pot_latsmo.f efield.o module_decomp.o 
+module_pot_latsmo2.o : module_pot_latsmo2.f efield.o module_decomp.o 
+module_pot_lonsmo.o : module_pot_lonsmo.f efield.o module_decomp.o 
+module_prep_fk.o : module_prep_fk.f efield.o module_decomp.o 
+module_prep_pnm.o : module_prep_pnm.f efield.o module_decomp.o 
+module_prep_weimer.o : module_prep_weimer.f module_ADJUST.o module_SetModel.o module_GET_TILT.o efield.o module_decomp.o 
+module_read_acoef.o : module_read_acoef.f efield.o module_decomp.o 
+module_set_fkflfs.o : module_set_fkflfs.f module_ff.o efield.o module_decomp.o 
+module_sub_eldyn.o : module_sub_eldyn.f module_get_efield.o module_cal_monthday.o efield.o module_eldyn.o module_decomp.o 
+module_sunloc.o : module_sunloc.f module_magfield.o module_decomp.o 
+module_svbksb.o : module_svbksb.f module_decomp.o 
+module_svdcmp.o : module_svdcmp.f module_decomp.o 
+supim_exb.o : supim_exb.f module_decomp.o 
