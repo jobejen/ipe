@@ -131,7 +131,7 @@ sms_sets=""
 
 # Set up some lists of valid options for error checking.
 
-compilers="cray intel lahey pgi"
+compilers="cray intel lahey pgi gnu"
 machines="trillian zeus"
 parallelisms="parallel serial"
 
@@ -181,7 +181,7 @@ case $machine in
   # trillian stanza
 
   "trillian")
-    compiler_check "cray intel pgi" $compiler $machine
+    compiler_check "cray intel pgi gnu" $compiler $machine
     setc IPEDATA  /mnt/lustre/lus0/space/madden/IPE/data
     setc IPEQUEUE workq
     setc IPETIME  00:30:00

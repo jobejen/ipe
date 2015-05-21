@@ -11,6 +11,8 @@ GPTL_LDFLAGS  = -L../dummygptl -lgptl
 PPP_FLAGS     = --Fmodule=module_decomp --Free --comment --HaloSize=10
 
 TARGETS = clean                   \
+          trillian_gnu_parallel  \
+          trillian_gnu_serial  \
           trillian_cray_parallel  \
           trillian_cray_serial    \
           trillian_intel_parallel \
@@ -44,6 +46,16 @@ endif
   ifeq ($(GPTL_USE_GPTL),yes)
     $(error GPTL support currently unavailable on trillian)
   endif
+  ifeq ($(COMPILER),gnu)
+    MODCMD    = $(shell ./modcmd trillian gnu)
+    FCP       = ftn
+    FCS       = ftn
+    OPT_FLAGS = -g3 -ffree-line-length-none
+    SMS       = /home/space/jobejen/src/sms/trillian-gnu
+    ifeq ($(DEBUG),yes)
+      DEBUG_FLAGS = -g
+    endif
+  endif
   ifeq ($(COMPILER),cray)
     MODCMD    = $(shell ./modcmd trillian cray)
     FCP       = ftn
@@ -59,7 +71,8 @@ endif
     FCP       = ftn
     FCS       = ftn
     OPT_FLAGS = -O3 -fp-model precise
-    SMS       = /mnt/lustre/lus0/space/madden/SMS/legacy_r689/trillian-intel
+    SMS       = /home/space/jobejen/src/sms/trillian-gnu
+#    SMS       = /mnt/lustre/lus0/space/madden/SMS/legacy_r689/trillian-intel
     ifeq ($(DEBUG),yes)
       DEBUG_FLAGS = -g -O0 -ftz -traceback -check bounds -fpe0
     endif
@@ -137,6 +150,12 @@ all:
 	$(info Valid targets are:)
 	$(foreach x,$(TARGETS),$(info - $(x)))
 	$(error Invalid target specified)
+
+trillian_gnu_parallel:
+	$(MAKE) ipe MACHINE=trillian COMPILER=gnu PARALLELISM=parallel
+
+trillian_gnu_serial:
+	$(MAKE) ipe MACHINE=trillian COMPILER=gnu PARALLELISM=serial
 
 trillian_cray_parallel:
 	$(MAKE) ipe MACHINE=trillian COMPILER=cray PARALLELISM=parallel

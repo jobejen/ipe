@@ -18,6 +18,9 @@ case $1 in
     this="$($init && module list 2>&1 | grep PrgEnv | sed 's/.*\(PrgEnv[^/]*\).*/\1/')"
     goto="$init && module switch $this"
     case $2 in
+      "gnu")
+        echo "$goto PrgEnv-gnu"
+        ;;
       "cray")
         echo "$goto PrgEnv-cray"
         ;;
