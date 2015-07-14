@@ -27,6 +27,8 @@ TARGETS = clean                   \
 
 EXE           = $(CURDIR)/../bin/ipe_$(MACHINE)_$(COMPILER)_$(PARALLELISM).exe
 FFLAGS        = $(strip $(OPT_FLAGS) $(DEBUG_FLAGS) $(GPTL_INCFLAGS) $(GPTL_LDFLAGS))
+INCDIR        = $(CURDIR)/../include
+LIB           = $(CURDIR)/../lib/libipe.a
 PARALLEL_MAKE = $(MAKE) -j $(MAKEJOBS)
 PPP           = $(SMS)/bin/ppp
 SMS_INCFLAGS  = -I$(SMS)/include
@@ -135,6 +137,8 @@ VARS =                                \
        FCP="$(FCP)"                   \
        FCS="$(FCS)"                   \
        FFLAGS="$(FFLAGS)"             \
+       INCDIR="$(INCDIR)"             \
+       LIB="$(LIB)"                   \
        MODCMD="$(MODCMD)"             \
        PARALLELISM="$(PARALLELISM)"   \
        PPP="$(PPP)"                   \
@@ -190,3 +194,4 @@ ipe:
 
 clean:
 	$(foreach x,$(DIRS),$(MAKE) -C $(x) clean &&) true
+	$(RM) $(LIB) $(INCDIR)/*

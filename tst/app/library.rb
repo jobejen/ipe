@@ -21,6 +21,8 @@ module Library
     Thread.exclusive { ext(cmd,{:msg=>"Error copying 'run' to '#{rundir}'"}) }
     bindir=File.join(env.build.ddts_root,"bin")
     FileUtils.mkdir_p(bindir)
+    FileUtils.mkdir_p(File.join(env.build.ddts_root,"include"))
+    FileUtils.mkdir_p(File.join(env.build.ddts_root,"lib"))
     {:bindir=>bindir,:rundir=>rundir,:srcdir=>srcdir}
   end
 
