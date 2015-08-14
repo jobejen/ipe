@@ -1,4 +1,4 @@
-hwm93.o : hwm93.f90  
-module_neutral.o : module_neutral.f90  
-nrlmsise00.o : nrlmsise00.f90  
-thermosphere_1d_v2.o : thermosphere_1d_v2.f90  
+hwm93.o : hwm93.f90 module_decomp.o 
+module_neutral.o : module_neutral.f90 module_decomp.o 
+nrlmsise00.o : nrlmsise00.f90 module_decomp.o 
+thermosphere_1d_v2.o : thermosphere_1d_v2.f90 module_decomp.o 

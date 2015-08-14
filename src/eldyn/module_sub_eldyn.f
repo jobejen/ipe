@@ -46,6 +46,7 @@
       INTEGER (KIND=int_prec),INTENT(IN)   :: utime !universal time [sec]
 !---local
       real :: kp ! 
+
 !c initiate
 !c calculate efield only if diff time step
 !      if(utsec.ne.utsec_last) then
@@ -82,18 +83,23 @@
       IF ( utime==start_time ) THEN
           write(unit=2003,FMT='(20f10.4)')ylatm
           write(unit=2004,FMT='(20f10.4)')ylonm
+          print*,"finished writing to unit 2004"
       END IF
 !      endif !if(utsec.ne.utsec_last) then
 
 
 ! get ED1/2(nmp=80 X nlp=170) at 90km from potent(181x91)at 130km
       IF ( utime==start_time ) then
-        j0=-999
+        print*,"here is utime ",utime,"  here is start_time ",start_time
+         print*,"here is the memory address of j0 ",LOC(j0)
+      print*,"here is the memory address of start_time ",LOC(start_time)
+         j0=-999
+         print*,"!!!!!!!it was happy for j0=-999!!!!!!!"
       endif
       CALL GET_EFIELD90km ( utime )
       if ( sw_debug )  print *,'GET_EFIELD90km finished'
       IF ( utime==start_time ) THEN 
-        write(unit=2007,FMT='(20f10.4)') (90.-theta90_rad*rtd)    
+        write(unit=2007,FMT='(20f10.4)') (90.-theta90_rad * rtd)    
       ENDIF
 
       IF ( MOD( (utime-start_time),ip_freq_output)==0 ) THEN

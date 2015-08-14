@@ -56,7 +56,7 @@
 ! array initialization
       Ed1_90=zero
       Ed2_90=zero
-
+      print*,"here is the memory address j0 in get_efield", LOC(j0)
       IF ( j0(1,lps)<0 ) THEN
 ! array initialization
         theta90_rad = zero
@@ -154,6 +154,7 @@
      &                        ,(90.-plasma_grid_GL(IS,lp)*rtd)          &
      &                        ,(90.-theta90_rad(j1(2,lp))*rtd)
             end if !(sw_debug)then
+
           END IF                   ! ( plasma_grid_3d(IN,mp)%GL>theta90_rad(nmlat/2) ) THEN
 
         END DO mlat_loop90km0!: DO lp=1,NLP
@@ -189,36 +190,36 @@
 !       dlonm: delon lon grid spacing in degree
 !       BUG?  i = INT( (mlon90_deg/dlonm) , int_prec )
         mlon130_loop1: DO i=0,nmlon
-          i0=i
-          i1=i+1
-          IF ( i1>nmlon ) i1=i+1-nmlon
-          mlon130_0=mlon130_rad(i0)
-          IF ( mlon130_rad(i0)>mlon130_rad(i1) ) then
-            mlon130_0=mlon130_rad(i0)-pi*2.0  
-          ENDIF
-          if(sw_debug) then
-            print *,mp,i0,'mlon130(i0)=',mlon130_0,' mlon(mp)='         &
-     &        ,mlon_rad(mp),' mlon130(i1)=',mlon130_rad(i1)
-          endif
-          IF ( mlon_rad(mp)>=mlon130_0.AND.                             &
-     &         mlon_rad(mp)<=mlon130_rad(i1) ) THEN
-            EXIT mlon130_loop1
-          ELSE
-            if ( i==nmlon ) then
+        i0=i
+        i1=i+1
+        IF ( i1>nmlon ) i1=i+1-nmlon
+        mlon130_0=mlon130_rad(i0)
+        IF ( mlon130_rad(i0)>mlon130_rad(i1) ) then
+           mlon130_0=mlon130_rad(i0)-pi*2.0  
+        ENDIF
+        if(sw_debug) then
+           print *,mp,i0,'mlon130_0=',mlon130_0,' mlon_rad(mp)='        &
+     &          ,mlon_rad(mp),' mlon130_rad(i1)=',mlon130_rad(i1)
+        endif
+        IF ( mlon_rad(mp)>=mlon130_0.AND.                               &
+     &       mlon_rad(mp)<=mlon130_rad(i1) ) THEN
+           EXIT mlon130_loop1
+        ELSE
+           if ( i==nmlon ) then
               print *,'sub-get_e:(2) !STOP! could not find mlon'        &
-     &               ,mp,mlon_rad(mp),i0,mlon130_rad(i0)
-              STOP
-            end if
-          END IF
-        END DO mlon130_loop1 !: DO i=0,nmlon
-!       dbg
-        if(sw_debug)then
-          print *,'i0',i0,'i1',i1
-          print *,'mlon130_rad(i0)=',mlon130_rad(i0),                   &
-     &           ' mlon130_rad(i1)=',mlon130_rad(i1)
-        end if
-
-        mlat_loop90km1: DO lp=1,NLP
+     &             ,mp,mlon_rad(mp),i0,mlon130_rad(i0)
+!!!!jbj              STOP
+           end if
+        END IF
+      END DO mlon130_loop1      !: DO i=0,nmlon
+!     dbg
+      if(sw_debug)then
+         print *,'i0',i0,'i1',i1
+         print *,'mlon130_rad(i0)=',mlon130_rad(i0),                    &
+     &        ' mlon130_rad(i1)=',mlon130_rad(i1)
+      end if
+      
+      mlat_loop90km1: DO lp=1,NLP
           IN = JMIN_IN(lp)
           IS = JMAX_IS(lp)
           if(mp==1.and.lp>150.and.lp<158) then
@@ -250,6 +251,7 @@
 !SMS$IGNORE END
             STOP
           endif
+
           ed1_90(1,lp,mp)=-1.0/r/coslam_m(1,lp)                         &
      &                         *(pot_i1-pot_i0)/d_phi_m
 !         SH

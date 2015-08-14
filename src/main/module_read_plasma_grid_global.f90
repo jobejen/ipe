@@ -92,6 +92,7 @@
       filename =filepath_pgrid//filename_pgrid
       FORM_dum ='formatted' 
       STATUS_dum ='old'
+      print*,"!!!!!! here is the filename ",filename," !!!!!!!!!"
       CALL open_file ( filename, LUN_pgrid, FORM_dum, STATUS_dum ) 
       print *,"open file completed"
       READ (UNIT=LUN_pgrid, FMT=*) JMIN_IN_all, JMAX_IS_all  !IN_2d_3d , IS_2d_3d

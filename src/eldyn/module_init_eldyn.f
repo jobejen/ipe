@@ -38,8 +38,8 @@
       USE module_eldyn,only : j0,j1,Ed1_90,Ed2_90,coslam_m
       IMPLICIT NONE
       integer :: status
-!20120304:      CHARACTER(len=*),PARAMETER :: path='~/sandbox/efield/'
 
+!20120304:      CHARACTER(len=*),PARAMETER :: path='~/sandbox/efield/'
       print *,'begin init_eldyn'
 
       allocate( j0      (2,NLP    ),                                    &

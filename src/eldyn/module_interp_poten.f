@@ -143,6 +143,16 @@ c     use cam_logfile,   only: iulog
 	j1   = nmlath - hb1
 	hb2  = nmlath - (ibnd - tw)
 	j2   = nmlath - hb2
+!!!!!!jbj addition 20150810
+        if(j2 .lt. 0 )then 
+           print*,"!!!!!problem j2lt module_interp_poten.f bounds er!!!"
+!           j2 = 0
+        endif
+        if(j2 .gt. nmlat )then 
+           print*,"!!!!problem j2gt module_interp_poten.f out a bound!!"
+           j2 = nmlat
+        endif
+!!!!!!jbj 20150810 end
 	wrk1 = pot_midlat(ilon,j1)
 	wrk2 = pot_highlats(ilon,j2)
 !        write(iulog,*) 'pot_all ',ilon,hb1,hb2,nmlath -ibnd,tw

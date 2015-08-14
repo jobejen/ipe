@@ -119,9 +119,10 @@ END IF !( sw_output_plasma_grid ) THEN
            filename ='plasma'//TRIM(string_tmp)
            if(sw_debug) print *,(i-lun_min1),'filename',filename
            CALL open_file ( filename, LUN_PLASMA1(i), FORM_dum, STATUS_dum )
+          print*,"!!!!!finished loop number ",i,"of ",lun_max1," !!!!!!"
         END DO
         record_number_plasma = record_number_plasma_start - 1
-
+          print*,"!!!!!finished loop 1!!!!!"
         IF ( HPEQ_flip==0.0 ) THEN
 !--- unit=1181 : input history file
 !          LUN_PLASMA12=1181
@@ -134,8 +135,9 @@ END IF !( sw_output_plasma_grid ) THEN
           filename ='stup_ut_rec'
           FORM_dum ='formatted  ' 
           STATUS_dum ='old'
+          print*,"!!!!!opening stup_ut_rec file!!!!!"
           CALL open_file ( filename, LUN_UT2, FORM_dum, STATUS_dum )
-
+          print*,"!!!!!yeah it opened stup_ut_rec file!!!!!"
 !--- unit=200~~215
           FORM_dum = 'unformatted' 
 !note: reading Vi will be needed for neutral coupling

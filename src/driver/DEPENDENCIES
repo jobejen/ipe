@@ -1,1 +1,1 @@
-driver_ipe.o : driver_ipe.f90  
+driver_ipe.o : driver_ipe.f90 module_decomp.o 
