@@ -75,8 +75,16 @@
         print *,' kp',kp
         print *,'By=',by,' Bz=',bz,' F107d=',f107d
       end if
-
+!!!!!!jbj
+      print*,"!!!!!here is the potential before get_efield"
+      print*,potent
+!!!!!!jbj
       call get_efield
+!!!!!!jbj
+      print*,"!!!!!here is the potent after get_efield"
+      print*,potent
+!!!!!!jbj
+
 !dbg        print*,'www'
 !        ed11=ed1
 !        ed22=ed2
