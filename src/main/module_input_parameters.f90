@@ -95,6 +95,10 @@
       LOGICAL, PUBLIC :: sw_debug
       LOGICAL, PUBLIC :: sw_debug_mpi
       LOGICAL, PUBLIC :: sw_output_fort167
+!!!!!!jbj needs to be added to the code base
+      logical, PUBLIC :: sw_mhd_potential   !a switch for ipe to use openggcm highlat potential
+      logical, PUBLIC :: sw_mhd_prec   !a switch for ipe to use openggcm precipitation parameters
+!!!!!!jbj
       INTEGER(KIND=int_prec), DIMENSION(2), PUBLIC :: iout
       INTEGER(KIND=int_prec), PUBLIC :: mpstop
       INTEGER(KIND=int_prec), PUBLIC :: sw_neutral    !0:GT; 1:MSIS
@@ -102,6 +106,7 @@
 !0:self-consistent eldyn solver; 1:WACCM efield ;2:  ;3: read in external efield
       INTEGER(KIND=int_prec), PUBLIC :: sw_pcp        !0:heelis; 1:weimer
       INTEGER(KIND=int_prec), PUBLIC :: sw_grid       !0:APEX; 1:FLIP
+
 ! if sw_grid=1 
 !dbg20120304: nolonger used
 !nm20120304      REAL (KIND=real_prec), PUBLIC :: PCO_flip  
@@ -200,6 +205,8 @@
            &, sw_record_number   &
            &, duration   &
            &, fac_BM   &
+           &, sw_mhd_potential   &
+           &, sw_mhd_prec   &
            &, iout
 
 !nm20120304           &, PCO_flip       &
@@ -246,8 +253,13 @@
         REWIND LUN_nmlt
         READ(LUN_nmlt,NML=NMMSIS   ,ERR=222,IOSTAT=IOST_RD)
         REWIND LUN_nmlt
+!!!!!!jbj
+        print*,"!!!!!made it to nmswitch in read_inpute_parameters!!!!!!"
+!!!!!!jbj
         READ(LUN_nmlt,NML=NMSWITCH ,ERR=222,IOSTAT=IOST_RD)
-
+!!!!!!jbj
+        print*,"!!!!!made it past nmswitch in read_inpute_parameters!!!!!!"
+!!!!!!jbj
         OPEN(UNIT=LUN_LOG0,FILE=filename,STATUS='unknown',FORM='formatted',IOSTAT=istat)
         IF ( istat /= 0 ) THEN
           WRITE( UNIT=6, FMT=*)'ERROR OPENING FILE',filename
