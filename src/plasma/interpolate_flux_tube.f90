@@ -300,7 +300,6 @@ IF ( jth>TSP.AND.jth<=ISPEC )  CYCLE jth_loop4
                      &,mype,Qint(jth,i1d,imp,1), plasma_2d(jth,i1d,imp) , Qint(jth,i1d,imp,2),jth,i1d,i,mp,lp,imp
                 print "('!check X!=',3E12.4)",x(1),x(0),x(2)
                 print "('!check B!=',3E12.4)",B0(1),B0(0),B0(2)
-!SMS$IGNORE END
                 STOP
              END IF
 

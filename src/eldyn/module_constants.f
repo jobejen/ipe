@@ -105,6 +105,9 @@ c     use cam_logfile,   only: iulog
 !------------------------------------------------------------------
       do i = 0,nmlon
         ylonm(i) = i*dlonm
+!!!!!!jbj
+        print*,"here is ylonm in constants   ",ylonm(i)
+!!!!!!jbj        
       end do ! i=1,nmlonp1
 
 !-----------------------------------------------------------------

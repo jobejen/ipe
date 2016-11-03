@@ -98,6 +98,7 @@ END IF
 !sms$compare_var(plasma_3d,"driver_ipe.f90 - plasma_3d-4")
 
       ret = gptlstart ('time_loop')
+      print*,"!!!!!!!!!starting the loop wahoo"
       time_loop: DO utime = start_time, stop_time, time_step
       print*,'utime=',utime
 !sms$compare_var(plasma_3d,"driver_ipe.f90 - plasma_3d-5")
@@ -108,6 +109,7 @@ END IF
 !nm20110907:moved here because empirical Efield is needed for both neutral &plasma
       ret = gptlstart ('eldyn')
       IF ( sw_perp_transport>=1 ) THEN
+         print*,"!!!!!!!need to call eldyn"
         CALL eldyn ( utime )
       ENDIF
       ret = gptlstop  ('eldyn')

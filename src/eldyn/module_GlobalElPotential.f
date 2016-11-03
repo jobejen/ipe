@@ -84,6 +84,9 @@ c     use cam_logfile,   only: iulog
       USE module_bnd_sinus ,ONLY:      bnd_sinus
       USE module_highlat_adjust ,ONLY: highlat_adjust
       USE module_EpotVal ,ONLY: EpotVal
+!!!!!jbj
+      USE module_mhd_in , ONLY:mhd_pot
+!!!!!jbj
 !-----------------------------------------------------------------------
 ! local variables
 !-----------------------------------------------------------------------
@@ -129,7 +132,12 @@ c     use cam_logfile,   only: iulog
       do ilat = 0,nmlat_wei  ! Calculate only for one magn. hemisphere
         mlat_90 = 90. - ylatm(ilat)  ! mag. latitude
         do ilon = 0,nmlon
+!!!!!!jbj pot  = 1000.*EpotVal( mlat_90, ylonm(ilon)*deg2mlt ) ! calculate potential (kv -> v)
+!           print*,"here is ilat mlat  mhd_pot() ",ilat,ilon,
+!     1mhd_pot(ilat,ilon)
     	  pot  = 1000.*EpotVal( mlat_90, ylonm(ilon)*deg2mlt ) ! calculate potential (kv -> v)
+          print*,"here is the pot value ",pot
+!!!!!!jbj
 !-----------------------------------------------------------------------
 ! NH/SH symmetry
 !-----------------------------------------------------------------------
