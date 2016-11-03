@@ -38,7 +38,10 @@
       USE module_precision
       USE module_cal_monthday
       USE module_input_parameters,ONLY:NYEAR,NDAY,start_time,mype       &
-     &, ip_freq_output, sw_debug, kp_eld, F107D_ipe => F107D            !,AP
+     &, ip_freq_output, sw_debug, kp_eld, F107D_ipe => F107D            &!,AP
+!!!!!!jbj
+     &, sw_mhd_potential,sw_mhd_prec   
+!!!!!!jbj
       USE module_physical_constants,ONLY:rtd
 !nm20121003:
       USE module_eldyn,ONLY:theta90_rad,j0,Ed1_90,Ed2_90
@@ -76,6 +79,13 @@
         print *,'By=',by,' Bz=',bz,' F107d=',f107d
       end if
 !!!!!!jbj
+      if (sw_mhd_potential) then
+         print*,"here is the sw_mhd_potential ",sw_mhd_potential
+         print*,"here is the sw_mhd_prec ",sw_mhd_prec
+         print*,"here is the sw_debug ",sw_debug
+         print*,"Here is the potential switch IT WORKS!!!!!"
+      endif
+      
       print*,"!!!!!here is the potential before get_efield"
       print*,potent
 !!!!!!jbj
@@ -91,6 +101,7 @@
       IF ( utime==start_time ) THEN
           write(unit=2003,FMT='(20f10.4)')ylatm
           write(unit=2004,FMT='(20f10.4)')ylonm
+          print*,"here is ylonm sub_eldyn ",ylonm
           print*,"finished writing to unit 2004"
       END IF
 !      endif !if(utsec.ne.utsec_last) then
@@ -105,6 +116,10 @@
          print*,"!!!!!!!it was happy for j0=-999!!!!!!!"
       endif
       CALL GET_EFIELD90km ( utime )
+!!!!!!jbj
+      print*,"!!!!!here is the potent after get_efield90km"
+      print*,potent
+!!!!!!jbj
       if ( sw_debug )  print *,'GET_EFIELD90km finished'
       IF ( utime==start_time ) THEN 
         write(unit=2007,FMT='(20f10.4)') (90.-theta90_rad * rtd)    

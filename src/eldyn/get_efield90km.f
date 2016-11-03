@@ -169,11 +169,24 @@
 !     note: NYEAR=2000: is above the MAX recommended for extrapolation!!!
       iyr=1999 
 !     iday=97
+!!!!!!jbj
+      iyr=nyear 
+      
+      do i = 0,nmlon
+        ylonm(i) = i*2.
+        print*,"here is ylonm in constants   ",ylonm(i)
+      end do
+
+!!!!!!
+
       utsecs=REAL(utime, real_prec)
       CALL sunloc(iyr,NDAY,utsecs) !iyr,iday,secs)        
       if (sw_debug) print *,'sunlons(1)',sunlons(1),' iyr',iyr,utsecs
 !     convert from MLT(ylonm)[rad] to mlon[deg]
       mlon130_loop0: DO i=0,nmlon
+!!!!!!jbj
+      print*,"here is the ylonm(i) ",ylonm(i), "      ",I 
+!!!!!!jbj
         mlon130_rad(i)=(ylonm(i)-180.)*pi/180.+sunlons(1)
 !       make sure that 0 <=mlon130< 2*pi
         IF( mlon130_rad(i)< 0.0   ) mlon130_rad(i)=mlon130_rad(i)+pi*2.0
@@ -208,7 +221,7 @@
            if ( i==nmlon ) then
               print *,'sub-get_e:(2) !STOP! could not find mlon'        &
      &             ,mp,mlon_rad(mp),i0,mlon130_rad(i0)
-!!!!jbj              STOP
+              STOP
            end if
         END IF
       END DO mlon130_loop1      !: DO i=0,nmlon

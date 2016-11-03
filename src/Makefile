@@ -5,7 +5,7 @@
 
 # Static / Unconditional / Default variables
 
-DIRS          = main neutral flip eldyn plasma dummygptl driver
+DIRS          = main mhd_in neutral flip eldyn plasma dummygptl driver 
 GPTL_INCFLAGS = -I../dummygptl
 GPTL_LDFLAGS  = -L../dummygptl -lgptl
 PPP_FLAGS     = --Fmodule=module_decomp --Free --comment --HaloSize=10
