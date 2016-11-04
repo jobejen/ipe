@@ -301,6 +301,9 @@ IF ( jth>TSP.AND.jth<=ISPEC )  CYCLE jth_loop4
                 print "('!check X!=',3E12.4)",x(1),x(0),x(2)
                 print "('!check B!=',3E12.4)",B0(1),B0(0),B0(2)
                 STOP
+!!!!!!jbj
+!SMS$IGNORE end                
+!!!!!!jbj
              END IF
 
              IF ( jth<=TSP ) THEN
