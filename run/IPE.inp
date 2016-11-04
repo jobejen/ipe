@@ -9,7 +9,7 @@
   fnfac_flip=1.0
   fpas_flip=0.0
   heprat_flip=0.09
-  hpeq_flip=0.0
+  hpeq_flip=0.5
   ht_lce=200.0
   init_te_max=3000.0
   start_time_depleted=0
@@ -30,14 +30,14 @@
   zlbnp_inp=115.00
 /
 &nmipe
-  f107av=187.0
-  f107d=184.0
+  f107av=118
+  f107d=118
   ip_freq_msis=100
   ip_freq_output=100
-  nday=74
-  nyear=2000
-  start_time=0
-  time_step=300
+  nday=076
+  nyear=2013
+  start_time=43201
+  time_step=60
 /
 &nmmsis
   ap(1)=4.
@@ -50,7 +50,7 @@
   kp_eld=3.
 /
 &nmswitch
-  duration=100
+  duration=420
   fac_bm=1.00
   iout(1)=1
   iout(2)=60
@@ -59,7 +59,7 @@
   mpstop=80
   record_number_plasma_start=108
   sw_dbg_perp_trans=f
-  sw_debug=f
+  sw_debug=t
   sw_debug_mpi=f
   sw_divv=0
   sw_eldyn=1
@@ -72,6 +72,8 @@
   sw_para_transport=1
   sw_pcp=0
   sw_perp_transport=1
-  sw_record_number=1
+  sw_record_number=0
   sw_th_or_r=1
+  sw_mhd_potential=f
+  sw_mhd_prec=f
 /
